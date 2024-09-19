@@ -40,7 +40,25 @@ function xray1(
 ) where {Ru <: Real, Rv <: Real}
     T = promote_type(Ru, Rv, Float32)
     r2 = u^2 + v^2
-    if(ϕ<0)
+
+    p1 = u * cϕ + v * sϕ * sθ
+    p2 = u * sϕ - v * cϕ * sθ
+    p3 = v * cθ
+
+    e1 = -sϕ * cθ # x = p1 + ℓ * e1
+    e2 = cϕ * cθ  # y = p2 + ℓ * e2
+    e3 = sθ       # z = p3 + ℓ * e3
+
+    ℓxmin, ℓxmax = cube_bounds(p1, e1)
+    ℓymin, ℓymax = cube_bounds(p2, e2)
+    ℓzmin, ℓzmax = cube_bounds(p3, e3)
+
+    minℓ = max(ℓxmin, ℓymin, ℓzmin)
+    maxℓ = min(ℓxmax, ℓymax, ℓzmax)
+    ℓ = max(maxℓ - minℓ, zero(T))
+    z = p3 + ℓ * e3
+
+    if(z<0)
         return zero(T)
     end
 
