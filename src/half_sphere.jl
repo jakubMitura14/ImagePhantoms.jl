@@ -41,6 +41,9 @@ function xray1(
     T = promote_type(Ru, Rv, Float32)
     r2 = u^2 + v^2
 
+    (sϕ, cϕ) = sincos(ϕ)
+    (sθ, cθ) = sincos(θ)
+
     p1 = u * cϕ + v * sϕ * sθ
     p2 = u * sϕ - v * cϕ * sθ
     p3 = v * cθ
