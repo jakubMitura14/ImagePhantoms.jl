@@ -3,7 +3,7 @@
 half_sphere.jl
 =#
 export HalfSphere, half_sphere
-
+include("cuboid.jl")
 """
     HalfSphere <: AbstractShape{3}
 """
