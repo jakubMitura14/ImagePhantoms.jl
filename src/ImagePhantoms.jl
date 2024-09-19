@@ -24,6 +24,7 @@ include("cylinder.jl")
 include("dirac3.jl")
 include("ellipsoid.jl")
 include("gauss3.jl")
+include("half_sphere.jl")
 
 # phantoms:
 include("shepplogan.jl")
