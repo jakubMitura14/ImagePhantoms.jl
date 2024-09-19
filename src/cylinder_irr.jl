@@ -85,7 +85,7 @@ function xray1(
     wz = 1 # from unit-height of cylinder_irr
     wy = 2 * sqrt(1 - r^2)
 
-    return T(_rect_proj(wz, wy, v, θ))+(randn()*0.1)
+    return T(_rect_proj(wz, wy, v, θ))+(randn()*IRREGULARITY)
 end
 
 
