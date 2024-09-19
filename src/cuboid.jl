@@ -7,6 +7,7 @@ actually a rectangular cuboid https://en.wikipedia.org/wiki/Cuboid
 export Cuboid, cuboid, cube
 
 
+
 """
     Cuboid <: AbstractShape{3}
 """
