@@ -59,9 +59,11 @@ function xray1(
     minℓ = max(ℓxmin, ℓymin, ℓzmin)
     maxℓ = min(ℓxmax, ℓymax, ℓzmax)
     ℓ = max(maxℓ - minℓ, zero(T))
+    x = p1 + ℓ * e1
+    y = p2 + ℓ * e2
     z = p3 + ℓ * e3
 
-    if(z<0)
+    if(y<0)
         return zero(T)
     end
 
