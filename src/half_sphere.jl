@@ -8,7 +8,12 @@ include("cuboid.jl")
     HalfSphere <: AbstractShape{3}
 """
 struct HalfSphere <: AbstractShape{3}
-    axiss::NTuple{3, Real}
+    axiss::Int
+    function HalfSphere(axiss)         
+        new(axiss)
+    end
+
+
 end
 # constructor
 """
