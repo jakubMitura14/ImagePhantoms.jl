@@ -7,14 +7,7 @@ include("cuboid.jl")
 """
     HalfSphere <: AbstractShape{3}
 """
-struct HalfSphere <: AbstractShape{3}
-    axiss::Int
-    function HalfSphere(axiss)         
-        new(axiss)
-    end
-
-
-end
+struct HalfSphere <: AbstractShape{3}end
 # constructor
 """
     half_sphere(cx, cy, cz, r, Φ=0, Θ=0, value::Number = 1)
@@ -38,7 +31,7 @@ phantom1(ob::Object3d{HalfSphere}, xyz::NTuple{3,Real}) = (sum(abs2, xyz) ≤ 1)
 # x-ray transform (line integral) of unit half-sphere
 # `u,v` should be unitless
 function xray1(
-    hs::HalfSphere,
+    ::HalfSphere,
     u::Ru,
     v::Rv,
     ϕ::RealU, # irrelevant
@@ -69,19 +62,11 @@ function xray1(
     y = p2 + ℓ * e2
     z = p3 + ℓ * e3
 
-    if(hs.axiss==1)
-        if(y<0)
-            return zero(T)
-        end
-    elseif(hs.axiss==2)
-        if(x<0)
-            return zero(T)
-        end
-    elseif(hs.axiss==3)
-        if(z<0)
-            return zero(T)
-        end
-    end    
+
+    if(z<0)
+        return zero(T)
+    end
+    
     if r2 < 1
         return  sqrt(one(T) - r2)
     end
