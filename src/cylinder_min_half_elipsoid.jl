@@ -135,7 +135,7 @@ function xray1(
 
     half_sphere_axis=1
     res= T(_rect_proj(wz, wy, v, θ))
-    res=res-get_ray_half_sphere(u,v,ϕ,θ,axis)
+    res=res-get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)
     if(res<0)
         return zero(T)
     end
