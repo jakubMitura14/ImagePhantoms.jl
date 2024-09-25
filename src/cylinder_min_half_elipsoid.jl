@@ -163,7 +163,7 @@ function xray1(
 
     half_sphere_axis=2
     res= T(_rect_proj(wz, wy, v, θ))
-    res=res-(get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)*1.2)
+    res=res-(get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)*1.4)
     x,y,z=get_xyz(u,v,ϕ,θ,half_sphere_axis)
     if(z<0)
         return zero(T)
