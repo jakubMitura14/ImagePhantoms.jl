@@ -16,7 +16,7 @@ end
     half_sphere(center::NTuple{3,RealU}, radius::RealU, angle::NTuple{3,RealU}, v)
 Construct `Object{HalfSphere}` from parameters.
 """
-half_sphere(axiss,args... ; kwargs...) = Object(HalfSphere(), args...; kwargs...,axiss)
+half_sphere(axiss,args... ; kwargs...) = Object(HalfSphere(axiss), args...; kwargs...)
 
 # methods
 volume1(::HalfSphere) = 2/3 * π # volume of unit half-sphere
