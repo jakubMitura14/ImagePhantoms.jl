@@ -65,7 +65,7 @@ end
 
 
 function get_ray_half_sphere(u,v,ϕ,θ,axis)
-    T = promote_type(Ru, Rv, Float32)
+    T = Float32
     r2 = u^2 + v^2
 
     (sϕ, cϕ) = sincos(ϕ)
