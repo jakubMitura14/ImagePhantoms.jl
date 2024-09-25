@@ -116,7 +116,7 @@ end
 # x-ray transform (line integral) of unit cylinder
 # `u,v` should be unitless
 function xray1(
-    ::Cylinder,
+    ::Cylinder_min_half_elipsoid,
     u::Real,
     v::Real,
     ϕ::RealU, # azim (irrelevant)
