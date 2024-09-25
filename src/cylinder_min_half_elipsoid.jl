@@ -89,7 +89,7 @@ function get_ray_half_sphere(u,v,ϕ,θ,axis)
     x = p1 + ℓ * e1
     y = p2 + ℓ * e2
     z = p3 + ℓ * e3
-
+    
     # if(axis == 1)
     #     if(x<0)
     #         return zero(T)
