@@ -89,7 +89,7 @@ function get_ray_half_sphere(u,v,ϕ,θ,axis)
     x = p1 + ℓ * e1
     y = p2 + ℓ * e2
     z = p3 + ℓ * e3
-    
+
     # if(axis == 1)
     #     if(x<0)
     #         return zero(T)
@@ -135,7 +135,7 @@ function xray1(
 
     half_sphere_axis=2
     res= T(_rect_proj(wz, wy, v, θ))
-    res=res-(get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)*2)
+    res=res-(get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)*1.5)
 
     if(res<0)
         return zero(T)
