@@ -133,7 +133,7 @@ function xray1(
     wz = 1 # from unit-height of cylinder
     wy = 2 * sqrt(1 - r^2)
 
-    half_sphere_axis=1
+    half_sphere_axis=2
     res= T(_rect_proj(wz, wy, v, θ))
     res=res-get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)
 
