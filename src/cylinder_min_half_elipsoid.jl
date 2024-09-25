@@ -111,6 +111,34 @@ function get_ray_half_sphere(u,v,ϕ,θ,axis)
     return zero(T)
 end
 
+function get_xyz(u,v,ϕ,θ,axis)
+    T = Float32
+    r2 = u^2 + v^2
+
+    (sϕ, cϕ) = sincos(ϕ)
+    (sθ, cθ) = sincos(θ)
+
+    p1 = u * cϕ + v * sϕ * sθ
+    p2 = u * sϕ - v * cϕ * sθ
+    p3 = v * cθ
+
+    e1 = -sϕ * cθ # x = p1 + ℓ * e1
+    e2 = cϕ * cθ  # y = p2 + ℓ * e2
+    e3 = sθ       # z = p3 + ℓ * e3
+
+    ℓxmin, ℓxmax = cube_bounds(p1, e1)
+    ℓymin, ℓymax = cube_bounds(p2, e2)
+    ℓzmin, ℓzmax = cube_bounds(p3, e3)
+
+    minℓ = max(ℓxmin, ℓymin, ℓzmin)
+    maxℓ = min(ℓxmax, ℓymax, ℓzmax)
+    ℓ = max(maxℓ - minℓ, zero(T))
+    x = p1 + ℓ * e1
+    y = p2 + ℓ * e2
+    z = p3 + ℓ * e3
+
+    return x,y,z
+end
 
 
 # x-ray transform (line integral) of unit cylinder
@@ -136,7 +164,10 @@ function xray1(
     half_sphere_axis=2
     res= T(_rect_proj(wz, wy, v, θ))
     res=res-(get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)*1.2)
-
+    x,y,z=get_xyz(u,v,ϕ,θ,axis)
+    if(x<0)
+        return zero(T)
+    end
     if(res<0)
         return zero(T)
     end
