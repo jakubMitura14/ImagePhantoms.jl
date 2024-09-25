@@ -90,19 +90,19 @@ function get_ray_half_sphere(u,v,ϕ,θ,axis)
     y = p2 + ℓ * e2
     z = p3 + ℓ * e3
 
-    if(axis == 1)
-        if(x<0)
-            return zero(T)
-        end
-    elseif(axis == 2)
-        if(y<0)
-            return zero(T)
-        end
-    elseif(axis == 3)
-        if(z<0)
-            return zero(T)
-        end
-    end
+    # if(axis == 1)
+    #     if(x<0)
+    #         return zero(T)
+    #     end
+    # elseif(axis == 2)
+    #     if(y<0)
+    #         return zero(T)
+    #     end
+    # elseif(axis == 3)
+    #     if(z<0)
+    #         return zero(T)
+    #     end
+    # end
 
     if r2 < 1
         return  sqrt(one(T) - r2)
@@ -136,9 +136,11 @@ function xray1(
     half_sphere_axis=1
     res= T(_rect_proj(wz, wy, v, θ))
     res=res-get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)
+
     if(res<0)
         return zero(T)
     end
+
     return res
 end
 
