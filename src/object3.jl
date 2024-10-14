@@ -255,7 +255,10 @@ function radon(
     θ::RealU,
     oa::Array{<:Object3d},
 )
-    return radon(oa).(ndgrid(u, v)..., ϕ, θ)
+print("uuuuuuuu222") 
+mainn=radon(oa)
+    # return radon(oa).(ndgrid(u, v)..., ϕ, θ)
+    return threaded_map(mainn,(ndgrid(u, v)..., ϕ, θ))
 end
 
 
