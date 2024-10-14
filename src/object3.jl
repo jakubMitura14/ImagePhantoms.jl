@@ -196,6 +196,8 @@ for an object ``f(x,y,z)``.
 Then as `ϕ` increases, the line integrals rotate counter-clockwise.
 """
 function radon(ob::Object3d{S}) where S
+    print("uuuuuuuu4444") 
+
     return (u::RealU, v::RealU, ϕ::RealU, θ::RealU) -> _radon(ob, u, v, ϕ, θ)
 end
 
@@ -208,6 +210,8 @@ to make projection views
 for an array of 3D objects.
 """
 function radon(oa::Array{<:Object3d})
+    print("uuuuuuuu3333") 
+
     return (u::RealU, v::RealU, ϕ::RealU, θ::RealU) -> sum(ob -> radon(ob)(u,v,ϕ,θ), oa)
 end
 
