@@ -197,6 +197,8 @@ Then as `ϕ` increases, the line integrals rotate counter-clockwise.
 """
 function radon(ob::Object3d{S}) where S
     print("uuuuuuuu4444") 
+    a=0/1
+    b=1/0
 
     return (u::RealU, v::RealU, ϕ::RealU, θ::RealU) -> _radon(ob, u, v, ϕ, θ)
 end
