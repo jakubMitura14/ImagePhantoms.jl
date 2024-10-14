@@ -7,9 +7,11 @@ version = "0.8.1"
 LazyGrids = "7031d0ef-c40d-4431-b2f8-61a8d2f650db"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [compat]
 LazyGrids = "1"
 Random = "1"
 SpecialFunctions = "1.8, 2"
+Unitful="1.21.0"
 julia = "1.10"

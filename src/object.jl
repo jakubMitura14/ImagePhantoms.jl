@@ -9,6 +9,8 @@ export AbstractObject
 export Object, Object2d, Object3d
 #export rotate, scale, translate # no: to avoid conflicts with Plots
 export phantom, radon, spectrum
+using Base.Threads: @threads
+using Unitful: RealU, Quantity, oneunit, one, zero, promote, promote_type
 
 _tuple(x::Any, n::Int) = ntuple(i -> x, n)
 
@@ -267,6 +269,16 @@ function phantom(
 end
 
 
+
+function threaded_map_spread(f, collection)
+    results = Vector{Quantity{Float64, 𝐋, Unitful.FreeUnits{(cm,), 𝐋, nothing}}}(undef, length(collection))
+    # @threads for i in 1:length(collection)
+    for i in 1:length(collection)
+        println("kkk  $(typeof(f(collection[i]...)))  kkk")
+        results[i] = f(collection[i]...)
+    end
+    return results
+end
 """
     radon(itr, oa::Array{<:Object})
 Return parallel-beam projections
@@ -279,7 +291,11 @@ function radon(
     oa::Array{<:Object},
 )
     fun = radon(oa)
-    return [fun(i...) for i in itr]
+    # aa=fun(collect(itr)[1]...)
+    # println("aaaaaa l $(length(collect(itr))) oa $(length(oa))   $(aa) ")
+
+    # return [fun(i...) for i in itr]
+    return threaded_map_spread(fun, collect(itr))
 end
 
 
