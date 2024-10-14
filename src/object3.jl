@@ -211,6 +211,15 @@ function radon(oa::Array{<:Object3d})
 end
 
 
+
+function threaded_map(f, collection)
+    results = Vector{eltype(f(collection[1]))}(undef, length(collection))
+    @threads for i in 1:length(collection)
+        results[i] = f(collection[i])
+    end
+    return results
+end
+
 """
     radon(u:Vector, v:Vector, ϕ:Vector, θ:Vector, oa::Array{<:Object3d})
 Return parallel-beam projections
@@ -224,7 +233,11 @@ function radon(
     θ::AbstractVector,
     oa::Array{<:Object3d},
 )
-    return radon(oa).(ndgrid(u, v, ϕ, θ)...)
+print("uuuuuuuu") 
+mainn=radon(oa)
+return threaded_map(mainn,ndgrid(u, v, ϕ, θ)...)
+# return radon(oa).(ndgrid(u, v, ϕ, θ)...)
+
 end
 
 
