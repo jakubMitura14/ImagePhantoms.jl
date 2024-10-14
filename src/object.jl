@@ -10,7 +10,7 @@ export Object, Object2d, Object3d
 #export rotate, scale, translate # no: to avoid conflicts with Plots
 export phantom, radon, spectrum
 using Base.Threads: @threads
-using Unitful: RealU, Quantity, oneunit, one, zero, promote, promote_type
+using Unitful: Quantity, oneunit, one, zero, promote, promote_type
 
 _tuple(x::Any, n::Int) = ntuple(i -> x, n)
 
