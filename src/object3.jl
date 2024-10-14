@@ -5,6 +5,7 @@ Utilities for 3D objects
 
 using LazyGrids: ndgrid
 export phantom, radon, spectrum
+using Base.Threads: @threads
 
 
 volume(ob::Object3d{S}) where S = volume1(S()) * prod(ob.width)
