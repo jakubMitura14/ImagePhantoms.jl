@@ -5,7 +5,7 @@ out of elementary objects having shapes like
 ellipses, rectangles, and gaussian bumps.
 =#
 
-export AbstractObject
+export AbstractObject,KernelAbstractions
 export Object, Object2d, Object3d
 #export rotate, scale, translate # no: to avoid conflicts with Plots
 export phantom, radon, spectrum
@@ -272,11 +272,11 @@ end
 
 
 function threaded_map_spread(f, collection)
-    results = Vector{Quantity{Float64, 𝐋, Unitful.FreeUnits{(cm,), 𝐋, nothing}}}(undef, length(collection))
-    # @threads for i in 1:length(collection)
-    for i in 1:length(collection)
-        println("kkk  $(typeof(f(collection[i]...)))  kkk")
-        results[i] = f(collection[i]...)
+    # results = Vector{Quantity{Float64, 𝐋, Unitful.FreeUnits{(cm,), 𝐋, nothing}}}(undef, length(collection))
+    results = Vector{Float32}(undef, length(collection))
+    @threads for i in 1:length(collection)
+    # for i in 1:length(collection)
+        results[i] = Float32(unstrip(f(collection[i]...)))
     end
     return results
 end
