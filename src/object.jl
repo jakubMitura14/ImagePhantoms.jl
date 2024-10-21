@@ -273,10 +273,10 @@ end
 
 function threaded_map_spread(f, collection)
     # results = Vector{Quantity{Float64, 𝐋, Unitful.FreeUnits{(cm,), 𝐋, nothing}}}(undef, length(collection))
-    results = Vector{Float32}(undef, length(collection))
+    # results = Vector{Float32}(undef, length(collection))
     @threads for i in 1:length(collection)
     # for i in 1:length(collection)
-        results[i] = Float32(unstrip(f(collection[i]...)))
+    f["radon"][i] = Float32(ustrip(f(collection[i]...)))
     end
     return results
 end
@@ -290,13 +290,14 @@ Returned array size matches `size(itr)`.
 function radon(
     itr,
     oa::Array{<:Object},
+    f,
 )
     fun = radon(oa)
     # aa=fun(collect(itr)[1]...)
     # println("aaaaaa l $(length(collect(itr))) oa $(length(oa))   $(aa) ")
 
     # return [fun(i...) for i in itr]
-    return threaded_map_spread(fun, collect(itr))
+    return threaded_map_spread(f,fun, collect(itr))
 end
 
 
