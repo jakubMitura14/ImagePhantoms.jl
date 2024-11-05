@@ -278,7 +278,7 @@ function threaded_map_spread(f_temp,f, collection)
     for i in 1:length(collection)
         f_temp[i] = Float32(ustrip(f(collection[i]...)))
     end
-    return results
+    return f_temp
 end
 """
     radon(itr, oa::Array{<:Object})
