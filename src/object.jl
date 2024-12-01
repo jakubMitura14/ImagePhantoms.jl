@@ -274,8 +274,9 @@ end
 function threaded_map_spread(f_temp,f, collection)
     # results = Vector{Quantity{Float64, 𝐋, Unitful.FreeUnits{(cm,), 𝐋, nothing}}}(undef, length(collection))
     # results = Vector{Float32}(undef, length(collection))
-    # @threads for i in 1:length(collection)
-    for i in 1:length(collection)
+    collection=collect(collection)
+    @threads for i in 1:length(collection)
+    # for i in 1:length(collection)
         f_temp[i] = Float32(ustrip(f(collection[i]...)))
     end
     return f_temp
