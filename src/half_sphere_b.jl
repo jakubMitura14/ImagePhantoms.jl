@@ -16,9 +16,9 @@ struct HalfSphere_b_z <: AbstractShape{3}end
     half_sphere(center::NTuple{3,RealU}, radius::RealU, angle::NTuple{3,RealU}, v)
 Construct `Object{HalfSphere_b}` from parameters.
 """
-half_sphere_x(args... ; kwargs...) = Object(HalfSphere_b_x(), args...; kwargs...)
-half_sphere_y(args... ; kwargs...) = Object(HalfSphere_b_y(), args...; kwargs...)
-half_sphere_z(args... ; kwargs...) = Object(HalfSphere_b_z(), args...; kwargs...)
+half_sphere_x_b(args... ; kwargs...) = Object(HalfSphere_b_x(), args...; kwargs...)
+half_sphere_y_b(args... ; kwargs...) = Object(HalfSphere_b_y(), args...; kwargs...)
+half_sphere_z_b(args... ; kwargs...) = Object(HalfSphere_b_z(), args...; kwargs...)
 
 # methods
 volume1(::HalfSphere_b_x) = 2/3 * π # volume of unit half-sphere
