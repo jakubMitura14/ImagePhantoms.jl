@@ -25,14 +25,9 @@ cylinder_min_half_elipsoid(args... ; kwargs...) = Object(Cylinder_min_half_elips
 
 
 # methods
-
-
 volume1(::Cylinder_min_half_elipsoid) = π-(2/3 * π)
-
 ℓmax1(::Cylinder_min_half_elipsoid) = √5 # max line integral through unit cylinder
-
 ℓmax(ob::Object3d{Cylinder_min_half_elipsoid}) = sqrt(sum(abs2, (2maximum(ob.width[1:2]), ob.width[3])))
-
 
 """
     phantom1(ob::Object3d{Cylinder}, (x,y,z))
@@ -41,9 +36,6 @@ for unitless coordinates.
 """
 phantom1(ob::Object3d{Cylinder}, xyz::NTuple{3,Real}) =
     (((abs(xyz[3]) ≤ 0.5) && (sum(abs2, xyz[1:2]) ≤ 1)) && (!((sum(abs2, xyz) ≤ 1) && (xyz[1] >= 0))) )
-
-
-
 
 # line integral through rectangle of width (wx,wy) at (r,ϕ)
 function _rect_proj(wx::Real, wy::Real, r::Real, ϕ::Real)
@@ -62,7 +54,6 @@ function _rect_proj(wx::Real, wy::Real, r::Real, ϕ::Real)
 
     return scale * trapezoid(dis, -dmax, -dbreak, dbreak, dmax)
 end
-
 
 function get_ray_half_sphere(u,v,ϕ,θ,axis)
     T = Float32
@@ -156,20 +147,20 @@ function xray1(
     if r > 1
         return zero(T)
     end
-
     # rectangle in plane of distance `r` from origin
     wz = 1 # from unit-height of cylinder
     wy = 2 * sqrt(1 - r^2)
 
     half_sphere_axis=2
-    res= T(_rect_proj(wz, wy, v, θ))
-    
+    res= T(_rect_proj(wz, wy, v, θ))    
     # res=res-(get_ray_half_sphere(u,v,ϕ,θ,half_sphere_axis)*1.4)
     x,y,z=get_xyz(u,v,ϕ,θ,half_sphere_axis)
+
 
     if(z<0)
         return zero(T)
     end
+
     if(res<0)
         return zero(T)
     end

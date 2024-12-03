@@ -25,6 +25,7 @@ include("dirac3.jl")
 include("ellipsoid.jl")
 include("gauss3.jl")
 include("half_sphere.jl")
+include("half_sphere_b.jl")
 include("cylinder_irr.jl")
 include("cylinder_min_half_elipsoid.jl")
 
