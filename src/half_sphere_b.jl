@@ -39,7 +39,7 @@ phantom1(ob::Object3d{HalfSphere_b_z}, xyz::NTuple{3,Real}) = (sum(abs2, xyz) �
 
 # x-ray transform (line integral) of unit half-sphere
 # `u,v` should be unitless
-function xray1_main(
+function xray1_main_b(
     u::Ru,
     v::Rv,
     ϕ::RealU,
@@ -102,7 +102,7 @@ function xray1(
     ϕ::RealU, # irrelevant
     θ::RealU, # irrelevant
 ) where {Ru <: Real, Rv <: Real}
-return xray1_main( u,v,ϕ,θ,1)
+return xray1_main_b( u,v,ϕ,θ,1)
 end
 
 function xray1(
@@ -112,7 +112,7 @@ function xray1(
     ϕ::RealU, # irrelevant
     θ::RealU, # irrelevant
 ) where {Ru <: Real, Rv <: Real}
-return xray1_main( u,v,ϕ,θ,2)
+return xray1_main_b( u,v,ϕ,θ,2)
 end
 
 function xray1(
@@ -122,5 +122,5 @@ function xray1(
     ϕ::RealU, # irrelevant
     θ::RealU, # irrelevant
 ) where {Ru <: Real, Rv <: Real}
-return xray1_main( u,v,ϕ,θ,3)
+return xray1_main_b( u,v,ϕ,θ,3)
 end
