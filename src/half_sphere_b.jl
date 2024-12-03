@@ -2,7 +2,7 @@
 #=
 half_sphere.jl
 =#
-export HalfSphere_b_x, half_sphere_x,HalfSphere_b_y, half_sphere_y,HalfSphere_b_z, half_sphere_z
+export HalfSphere_b_x, half_sphere_x_b,HalfSphere_b_y, half_sphere_y_b,HalfSphere_b_z, half_sphere_z_b
 include("cuboid.jl")
 """
     HalfSphere_b <: AbstractShape{3}
